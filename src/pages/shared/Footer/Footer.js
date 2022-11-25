@@ -13,7 +13,7 @@ const Footer = () => {
       >
         <CDBBox display="flex" justifyContent="between" className="flex-wrap">
           <CDBBox>
-            <Link Link="/" className="d-flex align-items-center p-0 text-dark">
+            <Link to="/" className="d-flex align-items-center p-0 text-dark">
               <img
                 className="w-25"
                 src="https://i.ibb.co/ngLPrdm/RESALE-ZONE-removed.png"
@@ -38,10 +38,10 @@ const Footer = () => {
               Resale Zone
             </p>
             <CDBBox flex="column" style={{ cursor: "pointer", padding: "0" }}>
-              <CDBFooterLink Link="/">Resources</CDBFooterLink>
-              <CDBFooterLink Link="/">About Us</CDBFooterLink>
-              <CDBFooterLink Link="/">Contact</CDBFooterLink>
-              <CDBFooterLink Link="/blogs">Blog</CDBFooterLink>
+              <CDBFooterLink to="/">Resources</CDBFooterLink>
+              <CDBFooterLink to="/">About Us</CDBFooterLink>
+              <CDBFooterLink to="/">Contact</CDBFooterLink>
+              <CDBFooterLink to="/blogs">Blog</CDBFooterLink>
             </CDBBox>
           </CDBBox>
           <CDBBox>
@@ -49,7 +49,7 @@ const Footer = () => {
               Help
             </p>
             <CDBBox flex="column" style={{ cursor: "pointer", padding: "0" }}>
-              <CDBFooterLink Link="/">Support</CDBFooterLink>
+              <CDBFooterLink to="/">Support</CDBFooterLink>
             </CDBBox>
           </CDBBox>
         </CDBBox>
