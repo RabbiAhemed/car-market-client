@@ -1,12 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Menu from "../components/Menu.js/Menu";
+import Footer from "../pages/shared/Footer/Footer";
+import Menu from "../pages/shared/Menu.js/Menu";
 
 const Main = () => {
   return (
     <div>
       <Menu></Menu>
       <Outlet></Outlet>
+      <Footer></Footer>
     </div>
   );
 };
