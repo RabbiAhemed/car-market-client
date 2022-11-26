@@ -8,7 +8,6 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 export const AuthContext = createContext();
@@ -43,7 +42,6 @@ const UserContext = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // console.log(currentUser);
       setLoading(false);
     });
     return () => {
@@ -58,7 +56,6 @@ const UserContext = ({ children }) => {
 
     signInUser,
     logOutUser,
-
     loading,
     setUser,
   };

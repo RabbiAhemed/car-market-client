@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
-import UserContext from "../../../../Assignment 11/Fitness Mate/fitness-mate-client-side/src/UserContext/UserContext";
+import UserContext from "./UserContext/UserContext";
+import Toaster from "react-hot-toast";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserContext>
       <App />
+      <Toaster></Toaster>
     </UserContext>
   </React.StrictMode>
 );

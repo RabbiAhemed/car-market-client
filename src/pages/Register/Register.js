@@ -1,44 +1,71 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../UserContext/UserContext";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+  const [success, setSuccess] = useState(false);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+
+        setSuccess(true);
+
+        form.reset();
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="w-50 mx-auto my-5">
-      <h2 className="text-center">Register</h2>
-      <Form>
+      {success ? (
+        <h1 className="text-success text-center fw-bold">
+          Registration Successful !!!
+        </h1>
+      ) : (
+        <h2 className="text-center">Register</h2>
+      )}
+      <Form onSubmit={handleSubmit}>
         <Form.Label className="text-muted">Name</Form.Label>
         <Form.Group className="mb-3" controlId="formBasicName">
-          <Form.Control type="name" name="name" placeholder="Enter Name" />
+          <Form.Control
+            required
+            type="text"
+            name="name"
+            placeholder="Enter Name"
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label className="text-muted">Email address</Form.Label>
-          <Form.Control type="email" name="email" placeholder="Enter email" />
+          <Form.Control
+            required
+            type="email"
+            name="email"
+            placeholder="Enter email"
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label className="text-muted">Password</Form.Label>
           <Form.Control
+            required
             type="password"
             name="password"
             placeholder="Password"
           />
         </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label className="text-muted">Upload an image</Form.Label>
-          <br />
-          <Form.Control
-            required
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-          />
-        </Form.Group>
+
         <Form.Group className="mb-3">
           <Form.Label className="text-muted">Choose account type</Form.Label>
-          <Form.Select aria-label="Default select example">
+          <Form.Select required aria-label="Default select example">
             <option value="1">Buyer</option>
             <option value="2">Seller</option>
           </Form.Select>
