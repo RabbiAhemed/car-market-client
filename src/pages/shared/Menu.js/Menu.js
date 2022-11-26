@@ -30,7 +30,7 @@ const Menu = () => {
                 Home
               </Link>
 
-              <Link to="/blog" className="text-white mx-2">
+              <Link to="/blogs" className="text-white mx-2">
                 Blogs
               </Link>
             </Nav>
