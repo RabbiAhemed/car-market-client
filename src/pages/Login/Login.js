@@ -18,12 +18,15 @@ const Login = () => {
         const currentUser = {
           email: user.email,
         };
-        console.log(currentUser);
+        console.log(user.displayName);
 
         setUser(user);
         form.reset();
       })
       .catch((error) => console.error(error.message));
+  };
+  const handleGoogleSignIn = () => {
+    googleSignIn();
   };
   return (
     <div className="w-50 mx-auto my-5">
@@ -55,6 +58,7 @@ const Login = () => {
         <h6 className="mt-2">or</h6>
 
         <button
+          onClick={handleGoogleSignIn}
           type="button"
           className="btn btn-warning text-white btn-floating mx-1"
         >

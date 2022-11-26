@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../UserContext/UserContext";
 import "./Menu.css";
 const Menu = () => {
+  const { logOutUser, user } = useContext(AuthContext);
   return (
     <>
       <Navbar
@@ -38,9 +40,16 @@ const Menu = () => {
               <Link to="/register" className="text-white mx-2">
                 Register
               </Link>
-              <Link to="/login" className="text-white mx-2">
-                Login
-              </Link>
+
+              {user ? (
+                <Link onClick={logOutUser} className="text-white mx-2">
+                  Logout
+                </Link>
+              ) : (
+                <Link to="/login" className="text-white mx-2">
+                  Login
+                </Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
