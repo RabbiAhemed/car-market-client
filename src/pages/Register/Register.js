@@ -28,7 +28,7 @@ const Register = () => {
         <Form.Group className="mb-3">
           <Form.Label className="text-muted">Upload an image</Form.Label>
           <br />
-          <input
+          <Form.Control
             required
             type="file"
             id="image"
