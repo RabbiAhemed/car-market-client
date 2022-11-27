@@ -1,0 +1,15 @@
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .products-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2%;
+    margin: 0%, 5%;
+  }
+}
+
+.products-container {
+  margin-top: 5%;
+  margin-left: 2%;
+  margin-right: 2%;
+}

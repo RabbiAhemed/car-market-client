@@ -1,0 +1,16 @@
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .seller-location {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .price-condition {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .product-img {
+    height: 400px;
+  }
+}
