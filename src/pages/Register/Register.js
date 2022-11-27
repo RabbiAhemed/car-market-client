@@ -7,7 +7,7 @@ import { AuthContext } from "../../UserContext/UserContext";
 const Register = () => {
   const { createUser, updateUser } = useContext(AuthContext);
   const [success, setSuccess] = useState(false);
-  const [userRole, setUserRole] = useState();
+  const [userRole, setUserRole] = useState("buyer");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,8 +16,14 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const roleValue = form.options.value;
-
     console.log(roleValue);
+    if (roleValue == "seller") {
+      setUserRole(roleValue);
+    } else {
+      setUserRole("buyer");
+    }
+    //
+    // console.log(userRole);
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -78,7 +84,7 @@ const Register = () => {
             aria-label="Default select example"
             name="options"
           >
-            <option value="seller">Buyer</option>
+            <option value="buyer">Buyer</option>
             <option value="seller">Seller</option>
           </Form.Select>
         </Form.Group>

@@ -37,9 +37,11 @@ const Menu = () => {
               </Link>
             </Nav>
             <Nav className="nav-items">
-              <Link to="/register" className="text-white mx-2">
-                Register
-              </Link>
+              {!user && (
+                <Link to="/register" className="text-white mx-2">
+                  Register
+                </Link>
+              )}
 
               {user ? (
                 <Link onClick={logOutUser} className="text-white mx-2">
