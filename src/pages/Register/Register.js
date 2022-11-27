@@ -7,12 +7,17 @@ import { AuthContext } from "../../UserContext/UserContext";
 const Register = () => {
   const { createUser, updateUser } = useContext(AuthContext);
   const [success, setSuccess] = useState(false);
+  const [userRole, setUserRole] = useState();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const roleValue = form.options.value;
+
+    console.log(roleValue);
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -68,9 +73,13 @@ const Register = () => {
 
         <Form.Group className="mb-3">
           <Form.Label className="text-muted">Choose account type</Form.Label>
-          <Form.Select required aria-label="Default select example">
-            <option value="1">Buyer</option>
-            <option value="2">Seller</option>
+          <Form.Select
+            required
+            aria-label="Default select example"
+            name="options"
+          >
+            <option value="seller">Buyer</option>
+            <option value="seller">Seller</option>
           </Form.Select>
         </Form.Group>
 

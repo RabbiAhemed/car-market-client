@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Categories from "../components/Categories/Categories";
 import Main from "../Layout/Main";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
@@ -15,6 +16,13 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
+      {
+        path: "/categories",
+        element: <Categories></Categories>,
+        loader: async ({ params }) => {
+          return fetch("http://localhost:5000/categories");
+        },
+      },
 
       {
         path: "/blogs",
@@ -22,7 +30,6 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
-        // element: <Login></Login>,
       },
       {
         path: "/login",

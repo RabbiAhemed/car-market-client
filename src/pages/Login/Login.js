@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../UserContext/UserContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const { googleSignIn, signInUser, setUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -22,15 +27,18 @@ const Login = () => {
 
         setUser(user);
         form.reset();
+        navigate(from, { replace: true });
       })
       .catch((error) => console.error(error.message));
   };
   const handleGoogleSignIn = () => {
     googleSignIn();
+    navigate(from, { replace: true });
   };
   return (
     <div className="w-50 mx-auto my-5">
       <h2 className="text-center">Login</h2>
+
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control type="email" name="email" placeholder="Enter email" />
