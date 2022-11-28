@@ -1,28 +1,44 @@
+import { useContext, useState } from "react";
+import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { AuthContext } from "../../UserContext/UserContext";
 
-function BookingModal({ item }) {
-  //   const { name, resalePrice } = item;
-
-  console.log(item);
+const BookingModal = ({ item, show, setItem }) => {
+  console.log(show);
+  const { user } = useContext(AuthContext);
+  const { product_name, product_resalePrice } = item;
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const number = form.number.value;
+    const location = form.location.value;
+    console.log(typeof number, location);
+    setItem(null);
+  };
   return (
-    <div>
-      <Modal.Dialog>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
-        </Modal.Header>
+    <Modal show={show}>
+      <Modal.Header closeButton>
+        <Modal.Title>{product_name}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>seller: {user?.displayName}</Modal.Body>
+      <Modal.Body>email: {user?.email}</Modal.Body>
+      <Modal.Body>price: {product_resalePrice}</Modal.Body>
 
-        <Modal.Body>
-          <p>Modal body text goes here.</p>
-        </Modal.Body>
+      <Form className="w-75 mx-3" onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Control type="text" placeholder="mobile number" name="number" />
+        </Form.Group>
 
-        <Modal.Footer>
-          <Button variant="secondary">Close</Button>
-          <Button variant="primary">Save changes</Button>
-        </Modal.Footer>
-      </Modal.Dialog>
-    </div>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Control type="text" placeholder="Location" name="location" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </Modal>
   );
-}
+};
 
 export default BookingModal;

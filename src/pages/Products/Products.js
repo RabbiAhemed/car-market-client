@@ -6,7 +6,7 @@ import "./Products.css";
 const Products = () => {
   const products = useLoaderData();
   // console.log(products);
-
+  const [show, setShow] = useState(false);
   const [item, setItem] = useState(null);
   return (
     <div>
@@ -16,10 +16,18 @@ const Products = () => {
             key={product._id}
             product={product}
             setItem={setItem}
+            setShow={setShow}
           ></Product>
         ))}
       </div>
-      {item && <BookingModal item={item}></BookingModal>}
+      {item && (
+        <BookingModal
+          item={item}
+          show={show}
+          setShow={setShow}
+          setItem={setItem}
+        ></BookingModal>
+      )}
     </div>
 
     // call booking modal in here

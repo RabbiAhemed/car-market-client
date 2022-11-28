@@ -1,10 +1,8 @@
 import React from "react";
-import { Button, Card, ListGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import "./Product.css";
-const Product = ({ product, setItem }) => {
+const Product = ({ product, setItem, setShow }) => {
   const {
-    category_id,
     product_name,
     product_image,
     product_location,
@@ -29,9 +27,9 @@ const Product = ({ product, setItem }) => {
           <p>Resale Price: {product_resalePrice}</p>
           <p>Years of Use: {product_yearsOfUse}</p>
         </div>
-        <Button onClick={() => setItem(product)}>Book Now</Button>
-
-        {/* <label htmlFor="my-modal-3"className="tw-btn tw-btn-accent tw-bg-slate-500">Book Now</label> */}
+        <Button onClick={setShow(true) && (() => setItem(product))}>
+          Book Now
+        </Button>
       </div>
     </div>
   );
