@@ -32,7 +32,9 @@ const UserContext = ({ children }) => {
   };
 
   const logOutUser = () => {
-    signOut(auth);
+    setLoading(true);
+    localStorage.removeItem("resalezone-token");
+    return signOut(auth);
   };
 
   const googleSignIn = () => {
@@ -40,7 +42,7 @@ const UserContext = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  const updateUser = (name, picture) => {
+  const updateUser = (name) => {
     setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,

@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <Products></Products>,
         loader: async ({ params }) => {
           return fetch(
-            `http://localhost:5000/categories/${params.category_id}`
+            `https://server-side-sand.vercel.app/categories/${params.category_id}`
           );
         },
       },

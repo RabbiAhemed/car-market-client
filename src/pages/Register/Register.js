@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import { setAuthToken } from "../../api/auth";
 import { AuthContext } from "../../UserContext/UserContext";
 
 const Register = () => {
@@ -26,6 +27,7 @@ const Register = () => {
     // console.log(userRole);
     createUser(email, password)
       .then((result) => {
+        setAuthToken(result.user);
         const user = result.user;
 
         setSuccess(true);

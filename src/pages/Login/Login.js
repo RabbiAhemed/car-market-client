@@ -4,9 +4,11 @@ import Form from "react-bootstrap/Form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../UserContext/UserContext";
 import toast, { Toaster } from "react-hot-toast";
+import { setAuthToken } from "../../api/auth";
 
 const Login = () => {
-  const { googleSignIn, signInUser, setUser } = useContext(AuthContext);
+  const { googleSignIn, signInUser, setUser, setLoading } =
+    useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,6 +22,7 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         const user = result.user;
+        setAuthToken(user);
         const currentUser = {
           email: user.email,
         };
@@ -29,10 +32,16 @@ const Login = () => {
         form.reset();
         navigate(from, { replace: true });
       })
-      .catch((error) => console.error(error.message));
+
+      .catch((error) => {
+        setLoading(false);
+        console.error(error.message);
+      });
   };
   const handleGoogleSignIn = () => {
-    googleSignIn();
+    googleSignIn().then((result) => {
+      setAuthToken(result.user);
+    });
     navigate(from, { replace: true });
   };
   return (

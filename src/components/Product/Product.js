@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Card, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Product.css";
-const Product = ({ product }) => {
+const Product = ({ product, setItem }) => {
   const {
     category_id,
     product_name,
@@ -29,9 +29,9 @@ const Product = ({ product }) => {
           <p>Resale Price: {product_resalePrice}</p>
           <p>Years of Use: {product_yearsOfUse}</p>
         </div>
-        <Link to="/" className="btn btn-primary fw-bold">
-          Book
-        </Link>
+        <Button onClick={() => setItem(product)}>Book Now</Button>
+
+        {/* <label htmlFor="my-modal-3"className="tw-btn tw-btn-accent tw-bg-slate-500">Book Now</label> */}
       </div>
     </div>
   );

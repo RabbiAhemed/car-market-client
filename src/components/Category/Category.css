@@ -11,3 +11,10 @@ body a {
 .category_image {
   width: 20%;
 }
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .category-card {
+    margin: 10%, 0%;
+  }
+}
