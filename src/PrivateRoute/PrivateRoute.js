@@ -7,11 +7,7 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
   if (loading) {
-    return (
-      <Spinner animation="border" role="status">
-        loading...please wait
-      </Spinner>
-    );
+    return <Spinner animation="border" role="status"></Spinner>;
   }
 
   if (!user) {

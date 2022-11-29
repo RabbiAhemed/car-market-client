@@ -23,7 +23,7 @@ const BookingModal = ({ item, show, setItem }) => {
       location,
       number,
     };
-    fetch("http://localhost:5000/booking", {
+    fetch("https://server-side-sand.vercel.app/bookings", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(bookingInfo),

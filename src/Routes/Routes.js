@@ -1,11 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import Categories from "../components/Categories/Categories";
+import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
+// import Dashboard from "../pages/Dashboard/Dashboard";
+import MyBooking from "../pages/Dashboards/MyBooking/MyBooking";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Products from "../pages/Products/Products";
 import Register from "../pages/Register/Register";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -38,9 +42,24 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login></Login>,
       },
+
       {
         path: "*",
         element: <ErrorPage></ErrorPage>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "/dashboard",
+        element: <MyBooking></MyBooking>,
       },
     ],
   },
