@@ -1,6 +1,7 @@
-export const setAuthToken = (user) => {
+export const setAuthToken = (user, roleValue) => {
   const currentUser = {
     email: user.email,
+    role: roleValue,
   };
   // save user in database and get jwt token
   fetch(`${process.env.REACT_APP_API_URL}/user/${user?.email}`, {

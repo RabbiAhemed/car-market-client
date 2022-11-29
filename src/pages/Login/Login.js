@@ -22,7 +22,7 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         const user = result.user;
-        setAuthToken(user);
+        // setAuthToken(user);
         const currentUser = {
           email: user.email,
         };

@@ -17,7 +17,6 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const roleValue = form.options.value;
-    console.log(roleValue);
     if (roleValue == "seller") {
       setUserRole(roleValue);
     } else {
@@ -27,15 +26,14 @@ const Register = () => {
     // console.log(userRole);
     createUser(email, password)
       .then((result) => {
-        setAuthToken(result.user);
+        setAuthToken(result.user, roleValue);
         const user = result.user;
-
         setSuccess(true);
         updateUser(name).then(() => {
           // Profile updated!
           // ...
         });
-        // console.log(user);
+        console.log(user, roleValue);
         form.reset();
       })
       .catch((error) => console.log(error));
