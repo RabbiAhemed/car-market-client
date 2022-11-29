@@ -2,6 +2,10 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import "./Product.css";
 const Product = ({ product, setItem, setShow }) => {
+  const handleClick = (product) => {
+    setShow(true);
+    setItem(product);
+  };
   const {
     product_name,
     product_image,
@@ -27,9 +31,7 @@ const Product = ({ product, setItem, setShow }) => {
           <p>Resale Price: {product_resalePrice}</p>
           <p>Years of Use: {product_yearsOfUse}</p>
         </div>
-        <Button onClick={setShow(true) && (() => setItem(product))}>
-          Book Now
-        </Button>
+        <Button onClick={() => handleClick(product)}>Book Now</Button>
       </div>
     </div>
   );

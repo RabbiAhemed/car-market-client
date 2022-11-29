@@ -25,7 +25,7 @@ const BookingModal = ({ item, show, setItem }) => {
       <Modal.Body>email: {user?.email}</Modal.Body>
       <Modal.Body>price: {product_resalePrice}</Modal.Body>
 
-      <Form className="w-75 mx-3" onSubmit={handleSubmit}>
+      <Form className="w-75 mx-3 mb-3" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control type="text" placeholder="mobile number" name="number" />
         </Form.Group>
