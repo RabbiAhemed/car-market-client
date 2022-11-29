@@ -1,4 +1,4 @@
-export const setAuthToken = (user, roleValue) => {
+export const setAuthToken = (user, roleValue = "buyer") => {
   const currentUser = {
     email: user.email,
     role: roleValue,

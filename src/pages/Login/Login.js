@@ -9,7 +9,7 @@ import { setAuthToken } from "../../api/auth";
 const Login = () => {
   const { googleSignIn, signInUser, setUser, setLoading } =
     useContext(AuthContext);
-
+  // const [userRole,setUserRole]=useState("buyer")
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -18,17 +18,18 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-
-    signInUser(email, password)
+    const roleValue = "buyer";
+    signInUser(email, password, roleValue)
       .then((result) => {
         const user = result.user;
-        // setAuthToken(user);
+
         const currentUser = {
           email: user.email,
         };
-        console.log(user.displayName);
 
         setUser(user);
+        setAuthToken(user, roleValue);
+        console.log(roleValue);
         form.reset();
         navigate(from, { replace: true });
       })
@@ -50,7 +51,12 @@ const Login = () => {
 
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control type="email" name="email" placeholder="Enter email" />
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            required
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -58,6 +64,7 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="Password"
+            required
           />
         </Form.Group>
         <Button variant="primary" type="submit">
