@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import BookingModal from "../../components/BookingModal/BookingModal";
 import Product from "../../components/Product/Product";
+import PrivateRoute from "../../PrivateRoute/PrivateRoute";
 import "./Products.css";
 const Products = () => {
   const products = useLoaderData();
@@ -21,12 +22,14 @@ const Products = () => {
         ))}
       </div>
       {item && (
-        <BookingModal
-          item={item}
-          show={show}
-          setShow={setShow}
-          setItem={setItem}
-        ></BookingModal>
+        <PrivateRoute>
+          <BookingModal
+            item={item}
+            show={show}
+            setShow={setShow}
+            setItem={setItem}
+          ></BookingModal>
+        </PrivateRoute>
       )}
     </div>
 
