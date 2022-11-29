@@ -27,11 +27,21 @@ const BookingModal = ({ item, show, setItem }) => {
 
       <Form className="w-75 mx-3 mb-3" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control type="text" placeholder="mobile number" name="number" />
+          <Form.Control
+            type="text"
+            placeholder="mobile number"
+            name="number"
+            required
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control type="text" placeholder="Location" name="location" />
+          <Form.Control
+            type="text"
+            placeholder="Location"
+            name="location"
+            required
+          />
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit
