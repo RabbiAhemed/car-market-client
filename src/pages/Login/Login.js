@@ -5,14 +5,16 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../UserContext/UserContext";
 import toast, { Toaster } from "react-hot-toast";
 import { setAuthToken } from "../../api/auth";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
   const { googleSignIn, signInUser, setUser, setLoading } =
     useContext(AuthContext);
-  // const [userRole,setUserRole]=useState("buyer")
+  const [userRole, setUserRole] = useState("buyer");
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -22,16 +24,16 @@ const Login = () => {
     signInUser(email, password, roleValue)
       .then((result) => {
         const user = result.user;
-
         const currentUser = {
           email: user.email,
         };
 
         setUser(user);
-        setAuthToken(user, roleValue);
+
+        // setAuthToken(user, roleValue);
         console.log(roleValue);
         form.reset();
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
       })
 
       .catch((error) => {
@@ -41,9 +43,9 @@ const Login = () => {
   };
   const handleGoogleSignIn = () => {
     googleSignIn().then((result) => {
-      setAuthToken(result.user);
+      // setAuthToken(result.user);
     });
-    navigate(from, { replace: true });
+    // navigate(from, { replace: true });
   };
   return (
     <div className="w-50 mx-auto my-5">

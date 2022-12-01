@@ -1,14 +1,24 @@
 import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../api/auth";
+import useToken from "../../hooks/useToken";
 import { AuthContext } from "../../UserContext/UserContext";
 
 const Register = () => {
   const { createUser, updateUser } = useContext(AuthContext);
   const [success, setSuccess] = useState(false);
   const [userRole, setUserRole] = useState("buyer");
+  const [userEmail, setUserEmail] = useState("");
+  const [token] = useToken(userEmail);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  if (token) {
+    // navigate(from, { replace: true });
+    navigate("/");
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,18 +36,39 @@ const Register = () => {
     // console.log(userRole);
     createUser(email, password)
       .then((result) => {
-        setAuthToken(result.user, roleValue);
+        // setAuthToken(result.user, roleValue);
         const user = result.user;
         setSuccess(true);
         updateUser(name).then(() => {
           // Profile updated!
           // ...
+          saveUserToDb(user.displayName, user.email, roleValue);
         });
-        console.log(user, roleValue);
+        // setAuthToken(result.user, roleValue);
+
+        // console.log(token);
         form.reset();
       })
       .catch((error) => console.log(error));
   };
+
+  const saveUserToDb = (name, email, userRole) => {
+    const user = { name, email, userRole };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUserEmail(email);
+        console.log(data);
+      });
+  };
+
   return (
     <div className="w-50 mx-auto my-5">
       {success ? (

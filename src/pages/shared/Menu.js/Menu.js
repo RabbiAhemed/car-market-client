@@ -35,6 +35,11 @@ const Menu = () => {
               <Link to="/blogs" className="text-white mx-2">
                 Blogs
               </Link>
+              {user && (
+                <Link to="/dashboard" className="text-white mx-2">
+                  Dashboard
+                </Link>
+              )}
             </Nav>
             <Nav className="nav-items">
               {!user && (
