@@ -54,7 +54,7 @@ const Register = () => {
 
   const saveUserToDb = (name, email, userRole) => {
     const user = { name, email, userRole };
-    fetch("http://localhost:5000/users", {
+    fetch("process.env.REACT_APP_API_URL/users", {
       method: "POST",
 
       headers: {

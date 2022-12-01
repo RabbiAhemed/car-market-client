@@ -8,7 +8,7 @@ const MyBooking = () => {
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `process.env.REACT_APP_API_URL/bookings?email=${user?.email}`;
 
   const { data: bookings = [], isLoading } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -23,10 +23,8 @@ const MyBooking = () => {
     },
   });
 
-  console.log(bookings.length);
-  if (isLoading) {
-    return <div>Loading..</div>;
-  }
+  // console.log(bookings.length);
+
   return (
     <div>
       <h4 className="fw-bold">MY ORDERS</h4>
@@ -43,10 +41,10 @@ const MyBooking = () => {
         <tbody>
           {bookings?.length &&
             bookings?.map((booking, index) => (
-              <tr key={booking._id}>
+              <tr key={booking?._id}>
                 <td>{index + 1}</td>
-                <td>{booking.product_name}</td>
-                <td>{booking.product_resalePrice}</td>
+                <td>{booking?.product_name}</td>
+                <td>{booking?.product_resalePrice}</td>
                 <td>
                   <div>
                     <p>{booking.displayName}</p> <p>{booking.email}</p>
