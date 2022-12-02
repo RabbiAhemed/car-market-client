@@ -2,7 +2,7 @@
 
 Used car resale marketplace
 Live Website Link [https://resale-zone-4ff53.web.app](https://resale-zone-4ff53.web.app)
-
+Admin Credentials:
 adminEmail: admin@rs.com
 adminPassword: rsadmin
 
