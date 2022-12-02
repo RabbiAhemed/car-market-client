@@ -4,6 +4,7 @@ import Main from "../Layout/Main";
 import AddProduct from "../pages/AddProduct/AddProduct";
 // import Dashboard from "../pages/Dashboard/Dashboard";
 import MyBooking from "../pages/Dashboards/MyBooking/MyBooking";
+import Details from "../pages/Details/Details";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -28,6 +29,13 @@ const router = createBrowserRouter([
           return fetch(
             `https://server-side-sand.vercel.app/categories/${params.category_id}`
           );
+        },
+      },
+      {
+        path: "/articles/:id",
+        element: <Details></Details>,
+        loader: async ({ params }) => {
+          return fetch(`http://localhost:5000/articles/${params.id}`);
         },
       },
 

@@ -22,7 +22,6 @@ const Article = ({ article }) => {
           <Link className="btn btn-info" to={`/articles/${_id}`}>
             Read More
           </Link>
-          {/* <Button variant="primary"></Button> */}
         </Card.Body>
       </Card>
     </div>
