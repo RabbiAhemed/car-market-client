@@ -7,11 +7,11 @@ const Blogs = () => {
       <h2 className="fw-bold text-center">BLOGS</h2>
       <Container className="my-5">
         <div>
-          <h2>
+          <h2 className="fw-bold">
             What are the different ways to manage a state in a React
             application?
           </h2>
-          <p>Four ways to manage a state in a React application</p>
+          <p>Four (4) ways to manage a state in a React application</p>
           <p>
             <span className="fw-bold">Local (UI) state –</span>
             Local state is data we manage in one or another component. Local
@@ -37,16 +37,17 @@ const Blogs = () => {
             manage alongside all of our local and global UI state.
           </p>
           <p>
-            URL state – Data that exists on our URLs, including the pathname and
-            query parameters. URL state is often missing as a category of state,
-            but it is an important one. In many cases, a lot of major parts of
-            our application rely upon accessing URL state. Try to imagine
-            building a blog without being able to fetch a post based off of its
-            slug or id that is located in the URL!
+            <span className="fw-bold">URL state –</span> Data that exists on our
+            URLs, including the pathname and query parameters. URL state is
+            often missing as a category of state, but it is an important one. In
+            many cases, a lot of major parts of our application rely upon
+            accessing URL state. Try to imagine building a blog without being
+            able to fetch a post based off of its slug or id that is located in
+            the URL!
           </p>
         </div>
         <div>
-          <h2>How does prototypical inheritance work?</h2>
+          <h2 className="fw-bold">How does prototypical inheritance work?</h2>
           <p>
             The Prototypal Inheritance is a feature in javascript used to add
             methods and properties in objects. It is a method by which an object
@@ -56,7 +57,9 @@ const Blogs = () => {
           </p>
         </div>
         <div>
-          <h2>What is a unit test? Why should we write unit tests?</h2>
+          <h2 className="fw-bold">
+            What is a unit test? Why should we write unit tests?
+          </h2>
           <p>
             Unit testing is a component of test-driven development (TDD), a
             pragmatic methodology that takes a meticulous approach to building a
@@ -75,7 +78,7 @@ const Blogs = () => {
           </p>
         </div>
         <div>
-          <h2>React vs. Angular vs. Vue?</h2>
+          <h2 className="fw-bold">React vs. Angular vs. Vue?</h2>
           <p>
             <span className="fw-bold">React -</span> Facebook released React.js
             in March 2013 as a JavaScript library. Because React just provides

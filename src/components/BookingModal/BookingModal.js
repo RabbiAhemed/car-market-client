@@ -2,7 +2,8 @@ import { useContext, useState } from "react";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import toast from "react-hot-toast";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../UserContext/UserContext";
 
 const BookingModal = ({ item, show, setItem }) => {
@@ -23,19 +24,21 @@ const BookingModal = ({ item, show, setItem }) => {
       location,
       number,
     };
-    fetch("https://server-side-sand.vercel.app/bookings", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(bookingInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.acknowledged) {
-          setItem(null);
-          toast.success("your booking is confirmed");
-        }
-      });
+    if (bookingInfo) {
+      fetch("https://server-side-sand.vercel.app/bookings", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(bookingInfo),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.acknowledged) {
+            setItem(null);
+            toast.success(`you have booked ${bookingInfo.product_name}`);
+          }
+        });
+    }
 
     console.log(bookingInfo);
   };
@@ -70,6 +73,7 @@ const BookingModal = ({ item, show, setItem }) => {
           Submit
         </Button>
       </Form>
+      <ToastContainer />
     </Modal>
   );
 };

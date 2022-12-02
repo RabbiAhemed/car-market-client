@@ -6,8 +6,7 @@ import PrivateRoute from "../../PrivateRoute/PrivateRoute";
 import "./Products.css";
 const Products = () => {
   const products = useLoaderData();
-  console.log(products);
-  // console.log(products);
+
   const [show, setShow] = useState(false);
   const [item, setItem] = useState(null);
   return (

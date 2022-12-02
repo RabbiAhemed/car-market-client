@@ -1,10 +1,31 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Product.css";
 const Product = ({ product, setItem, setShow }) => {
-  const handleClick = (product) => {
+  const handleBooking = (product) => {
     setShow(true);
     setItem(product);
+  };
+  const handleReport = (product) => {
+    console.log(product);
+
+    if (product) {
+      fetch("http://localhost:5000/reports", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(product),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.acknowledged) {
+            toast.success(`${product.product_name} has been reported to admin`);
+            console.log("reported successfully");
+          }
+        });
+    }
   };
   const {
     product_name,
@@ -31,8 +52,22 @@ const Product = ({ product, setItem, setShow }) => {
           <p>Resale Price: {product_resalePrice}</p>
           <p>Years of Use: {product_yearsOfUse}</p>
         </div>
-        <Button onClick={() => handleClick(product)}>Book Now</Button>
+        <div className="buttons">
+          <Button
+            className="btn-success fw-bold"
+            onClick={() => handleBooking(product)}
+          >
+            Book Now
+          </Button>
+          <Button
+            className="btn-danger fw-bold"
+            onClick={() => handleReport(product)}
+          >
+            Report
+          </Button>
+        </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
