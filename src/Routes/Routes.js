@@ -17,6 +17,7 @@ import ReportedItems from "../pages/ReportedItems/ReportedItems";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
+import BuyerRoute from "./BuyerRoute";
 
 const router = createBrowserRouter([
   {
@@ -54,12 +55,12 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/login",
-        element: <Login></Login>,
-      },
-      {
         path: "/add-product",
         element: <AddProduct></AddProduct>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
       },
 
       {

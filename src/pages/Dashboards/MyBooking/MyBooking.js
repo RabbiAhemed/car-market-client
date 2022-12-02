@@ -8,6 +8,7 @@ import useBuyer from "../../../hooks/UseBuyer";
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [isBuyer] = useBuyer(user.email);
   const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
   const { data: bookings = [], isLoading } = useQuery({
@@ -25,13 +26,16 @@ const MyBooking = () => {
 
   return (
     <div>
+      {bookings && <h4 className="fw-bold">MY ORDERS</h4>}
+
       <Table striped bordered hover>
         <thead>
           <tr>
             <th>SL</th>
             <th>Product</th>
             <th>Price</th>
-            <th>User </th>
+            <th>User Info</th>
+            <th>Payment Status</th>
           </tr>
         </thead>
         <tbody>
@@ -43,7 +47,8 @@ const MyBooking = () => {
                 <td>{booking?.product_resalePrice}</td>
                 <td>
                   <div>
-                    <p>{booking.displayName}</p> <p>{booking.email}</p>
+                    <p>name: {booking.displayName}</p>{" "}
+                    <p>email: {booking.email}</p>
                   </div>
                 </td>
                 <td>

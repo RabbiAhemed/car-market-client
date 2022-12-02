@@ -20,7 +20,9 @@ const DashboardLayout = () => {
       <Container>
         <Row>
           <Col className="left-side-menu col-3">
-            <Link to="/dashboard">{isBuyer && <p>My Orders</p>}</Link>
+            <Link to="/dashboard/my-bookings">
+              {isBuyer && <h4>My Orders</h4>}
+            </Link>
             {isAdmin && (
               <>
                 <Link to="/dashboard/all-sellers">

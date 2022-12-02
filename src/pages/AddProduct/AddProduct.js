@@ -2,6 +2,7 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 const AddProduct = () => {
+  const imgBbKey = process.env.REACT_APP_IMGBB_KEY;
   const handleSubmit = (event) => {
     // generate todays date
     const date = new Date();
@@ -19,17 +20,45 @@ const AddProduct = () => {
     const product_yearsOfUse = form.year.value;
     const product_timeOfPosting = currentDate;
     const category_id = form.options.value;
+    const Product_image = form.image.files[0];
+    const formData = new FormData();
+    formData.append("image", Product_image);
+    //key: REACT_APP_IMGBB_KEY
+    //api: https://api.imgbb.com/1/upload
+    const url = `https://api.imgbb.com/1/upload?&key=f4c8251254b4702c4a3d0ea187b4ed88`;
 
-    const productInfo = {
-      category_id,
-      Product_name,
-      product_originalPrice,
-      product_resalePrice,
-      product_location,
-      product_yearsOfUse,
-      product_timeOfPosting,
-    };
-    console.log(productInfo);
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((ImgData) => {
+        if (ImgData.success) {
+          const productInfo = {
+            category_id,
+            Product_name,
+            Product_image: ImgData.data.url,
+            product_originalPrice,
+            product_resalePrice,
+            product_location,
+            product_yearsOfUse,
+            product_timeOfPosting,
+          };
+          // fetch
+          fetch("http://localhost:5000/products", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(productInfo),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              console.log(result);
+            });
+        }
+      });
   };
 
   return (
@@ -87,6 +116,9 @@ const AddProduct = () => {
             <option value="2">Convertible</option>
             <option value="3">Sports</option>
           </Form.Select>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <input type="file" id="image" accept="image/" required></input>
         </Form.Group>
 
         <Button variant="info" type="submit">

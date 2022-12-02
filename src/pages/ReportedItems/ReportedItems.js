@@ -15,6 +15,7 @@ const ReportedItems = () => {
   });
   return (
     <div>
+      <h1>Reported Items</h1>
       <Table striped bordered hover>
         <thead>
           <tr>
