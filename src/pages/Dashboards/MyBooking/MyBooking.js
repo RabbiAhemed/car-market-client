@@ -3,12 +3,12 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import { AuthContext } from "../../../UserContext/UserContext";
+import useBuyer from "../../../hooks/UseBuyer";
 
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
-
   const navigate = useNavigate();
-  const url = `process.env.REACT_APP_API_URL/bookings?email=${user?.email}`;
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
   const { data: bookings = [], isLoading } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -23,12 +23,8 @@ const MyBooking = () => {
     },
   });
 
-  // console.log(bookings.length);
-
   return (
     <div>
-      <h4 className="fw-bold">MY ORDERS</h4>
-
       <Table striped bordered hover>
         <thead>
           <tr>

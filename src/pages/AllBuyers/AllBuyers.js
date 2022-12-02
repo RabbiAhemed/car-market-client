@@ -2,34 +2,39 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Table } from "react-bootstrap";
 
-const ReportedItems = () => {
-  const url = "http://localhost:5000/reports";
+const AllBuyers = () => {
+  const url = "http://localhost:5000/users";
 
-  const { data: items = [] } = useQuery({
-    queryKey: ["items"],
+  const { data: users = [] } = useQuery({
+    queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(url);
       const data = await res.json();
       return data;
     },
   });
+
+  const buyers = users.filter((user) => user.userRole === "buyer");
+  console.log(buyers);
+
   return (
     <div>
+      <h2>All Users</h2>
       <Table striped bordered hover>
         <thead>
           <tr>
             <th>SL</th>
             <th>Name</th>
-            <th>Action</th>
+            <th>email</th>
           </tr>
         </thead>
         <tbody>
-          {items?.length &&
-            items?.map((item, index) => (
-              <tr key={item?._id}>
+          {buyers?.length &&
+            buyers?.map((buyer, index) => (
+              <tr key={buyer?._id}>
                 <td>{index + 1}</td>
-                <td>{item?.product_name}</td>
-                <td>Delete</td>
+                <td>{buyer?.name}</td>
+                <td>{buyer?.email}</td>
               </tr>
             ))}
         </tbody>
@@ -38,4 +43,4 @@ const ReportedItems = () => {
   );
 };
 
-export default ReportedItems;
+export default AllBuyers;

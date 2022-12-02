@@ -7,7 +7,7 @@
 //   };
 
 //   // save user in database and get jwt token
-//   fetch(`${process.env.REACT_APP_API_URL}/user/${user?.email}`, {
+//   fetch(`${http://localhost:5000}/user/${user?.email}`, {
 //     method: "PUT",
 
 //     headers: {

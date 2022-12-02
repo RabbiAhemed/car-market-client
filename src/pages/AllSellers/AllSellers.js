@@ -5,7 +5,7 @@ import { Table } from "react-bootstrap";
 const AllUsers = () => {
   const url = "http://localhost:5000/users";
 
-  const { data: users = [], isLoading } = useQuery({
+  const { data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(url);
@@ -13,10 +13,13 @@ const AllUsers = () => {
       return data;
     },
   });
+  const sellers = users.filter((user) => user.userRole === "seller");
+  console.log(sellers);
 
+  // const {sellers}=users.userRole.seller;
   return (
     <div>
-      <h2>All Users</h2>
+      <h2>All Sellers</h2>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -26,12 +29,12 @@ const AllUsers = () => {
           </tr>
         </thead>
         <tbody>
-          {users?.length &&
-            users?.map((user, index) => (
-              <tr key={user?._id}>
+          {sellers?.length &&
+            sellers?.map((seller, index) => (
+              <tr key={seller?._id}>
                 <td>{index + 1}</td>
-                <td>{user?.name}</td>
-                <td>{user?.email}</td>
+                <td>{seller?.name}</td>
+                <td>{seller?.email}</td>
               </tr>
             ))}
         </tbody>

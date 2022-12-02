@@ -26,16 +26,14 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const roleValue = form.options.value;
-    if (roleValue == "seller") {
+    if (roleValue === "seller") {
       setUserRole(roleValue);
     } else {
       setUserRole("buyer");
     }
-    //
-    // console.log(userRole);
+
     createUser(email, password)
       .then((result) => {
-        // setAuthToken(result.user, roleValue);
         const user = result.user;
         setSuccess(true);
         updateUser(name).then(() => {
@@ -43,9 +41,6 @@ const Register = () => {
           // ...
           saveUserToDb(user.displayName, user.email, roleValue);
         });
-        // setAuthToken(result.user, roleValue);
-
-        // console.log(token);
         form.reset();
       })
       .catch((error) => console.log(error));
@@ -53,7 +48,7 @@ const Register = () => {
 
   const saveUserToDb = (name, email, userRole) => {
     const user = { name, email, userRole };
-    fetch("process.env.REACT_APP_API_URL/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
 
       headers: {

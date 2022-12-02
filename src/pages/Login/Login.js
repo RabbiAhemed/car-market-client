@@ -36,10 +36,7 @@ const Login = () => {
 
         setUser(user);
 
-        // setAuthToken(user, roleValue);
-
         form.reset();
-        // navigate(from, { replace: true });
       })
 
       .catch((error) => {
@@ -52,7 +49,6 @@ const Login = () => {
       setUserEmail(result.user.email);
       saveUserToDb(result.user.displayName, result.user.email, "buyer");
     });
-    // navigate(from, { replace: true });
   };
 
   const saveUserToDb = (name, email, userRole = "buyer") => {

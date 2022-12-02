@@ -3,20 +3,20 @@ import "./NewsLetter.css";
 const NewsLetter = () => {
   return (
     <div>
-      <section class="home-newsletter ">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="single">
+      <section className="home-newsletter ">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-12">
+              <div className="single">
                 <h2>Subscribe to our Newsletter</h2>
-                <div class="input-group">
+                <div className="input-group">
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Enter your email"
                   />
-                  <span class="input-group-btn">
-                    <button class="btn btn-theme" type="submit">
+                  <span className="input-group-btn">
+                    <button className="btn btn-theme" type="submit">
                       Subscribe
                     </button>
                   </span>

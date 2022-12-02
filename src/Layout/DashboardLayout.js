@@ -4,10 +4,14 @@ import Menu from "../pages/shared/Menu.js/Menu";
 import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import { AuthContext } from "../UserContext/UserContext";
+import useSeller from "../hooks/useSeller";
+import useBuyer from "../hooks/UseBuyer";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user.email);
+  const [isSeller] = useSeller(user.email);
+  const [isBuyer] = useBuyer(user.email);
 
   return (
     <div>
@@ -16,16 +20,27 @@ const DashboardLayout = () => {
       <Container>
         <Row>
           <Col className="left-side-menu col-3">
-            <Link to="/dashboard">
-              <p>My Bookings</p>
-            </Link>
+            <Link to="/dashboard">{isBuyer && <p>My Orders</p>}</Link>
             {isAdmin && (
               <>
-                <Link to="/dashboard/all-users">
-                  <p>All Users</p>
+                <Link to="/dashboard/all-sellers">
+                  <p>All Sellers</p>
+                </Link>
+                <Link to="/dashboard/all-buyers">
+                  <p>All Buyers</p>
                 </Link>
                 <Link to="/dashboard/reports">
                   <p>Reported Items</p>
+                </Link>
+              </>
+            )}
+            {isSeller && (
+              <>
+                <Link to="/dashboard/add-product">
+                  <p>Add Product</p>
+                </Link>
+                <Link to="/dashboard/my-products">
+                  <p>My Products</p>
                 </Link>
               </>
             )}

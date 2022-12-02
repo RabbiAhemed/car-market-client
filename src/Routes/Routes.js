@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import AddProduct from "../pages/AddProduct/AddProduct";
-import AllUsers from "../pages/AllUsers/AllUsers";
+import AllUsers from "../pages/AllBuyers/AllBuyers";
+import AllSellers from "../pages/AllSellers/AllSellers";
 import Blogs from "../pages/Blogs/Blogs";
 // import Dashboard from "../pages/Dashboard/Dashboard";
 import MyBooking from "../pages/Dashboards/MyBooking/MyBooking";
@@ -15,6 +16,7 @@ import Register from "../pages/Register/Register";
 import ReportedItems from "../pages/ReportedItems/ReportedItems";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import SellerRoute from "./SellerRoute";
 
 const router = createBrowserRouter([
   {
@@ -79,7 +81,7 @@ const router = createBrowserRouter([
         element: <MyBooking></MyBooking>,
       },
       {
-        path: "/dashboard/all-users",
+        path: "/dashboard/all-buyers",
         element: (
           <AdminRoute>
             <AllUsers></AllUsers>
@@ -87,8 +89,28 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/dashboard/all-sellers",
+        element: (
+          <AdminRoute>
+            <AllSellers></AllSellers>
+          </AdminRoute>
+        ),
+      },
+      {
         path: "/dashboard/reports",
-        element: <ReportedItems></ReportedItems>,
+        element: (
+          <AdminRoute>
+            <ReportedItems></ReportedItems>,
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/add-product",
+        element: (
+          <SellerRoute>
+            <AddProduct></AddProduct>
+          </SellerRoute>
+        ),
       },
     ],
   },
