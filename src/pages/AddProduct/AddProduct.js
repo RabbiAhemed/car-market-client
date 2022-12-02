@@ -126,6 +126,18 @@ const AddProduct = () => {
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">
+          <Form.Label className="text-muted">Condition type</Form.Label>
+          <Form.Select
+            required
+            aria-label="Default select example"
+            name="condition"
+          >
+            <option value="1">Excellent</option>
+            <option value="2">Good</option>
+            <option value="3">Fair</option>
+          </Form.Select>
+        </Form.Group>
+        <Form.Group className="mb-3">
           <input type="file" id="image" accept="image/" required></input>
         </Form.Group>
 
