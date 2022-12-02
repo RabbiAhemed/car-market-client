@@ -9,8 +9,6 @@ const Product = ({ product, setItem, setShow }) => {
     setItem(product);
   };
   const handleReport = (product) => {
-    console.log(product);
-
     if (product) {
       fetch("http://localhost:5000/reports", {
         method: "POST",
@@ -19,10 +17,8 @@ const Product = ({ product, setItem, setShow }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.acknowledged) {
             toast.success(`${product.product_name} has been reported to admin`);
-            console.log("reported successfully");
           }
         });
     }

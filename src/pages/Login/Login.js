@@ -14,6 +14,11 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const [userEmail, setUserEmail] = useState("");
+  const [token] = useToken(userEmail);
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,11 +32,12 @@ const Login = () => {
         const currentUser = {
           email: user.email,
         };
+        setUserEmail(user.email);
 
         setUser(user);
 
         // setAuthToken(user, roleValue);
-        console.log(roleValue);
+
         form.reset();
         // navigate(from, { replace: true });
       })
@@ -43,9 +49,27 @@ const Login = () => {
   };
   const handleGoogleSignIn = () => {
     googleSignIn().then((result) => {
-      // setAuthToken(result.user);
+      setUserEmail(result.user.email);
+      saveUserToDb(result.user.displayName, result.user.email, "buyer");
     });
     // navigate(from, { replace: true });
+  };
+
+  const saveUserToDb = (name, email, userRole = "buyer") => {
+    const user = { name, email, userRole };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUserEmail(email);
+        console.log(data);
+      });
   };
   return (
     <div className="w-50 mx-auto my-5">
@@ -83,13 +107,14 @@ const Login = () => {
       <div>
         <h6 className="mt-2">or</h6>
 
-        <button
+        <Button
           onClick={handleGoogleSignIn}
-          type="button"
-          className="btn btn-warning text-white btn-floating mx-1"
+          type="submit"
+          variant="warning"
+          className="fw-bold p-3"
         >
-          <p className="lead fw-bold fs- mb-0 me-3">Sign in with Google</p>
-        </button>
+          Sign in with Google
+        </Button>
       </div>
     </div>
   );
