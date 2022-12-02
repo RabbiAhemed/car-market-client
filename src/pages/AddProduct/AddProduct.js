@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../../UserContext/UserContext";
 const AddProduct = () => {
   const imgBbKey = process.env.REACT_APP_IMGBB_KEY;
+  const { user } = useContext(AuthContext);
   const handleSubmit = (event) => {
     // generate todays date
     const date = new Date();
@@ -43,6 +47,8 @@ const AddProduct = () => {
             product_location,
             product_yearsOfUse,
             product_timeOfPosting,
+            product_SellerName: user?.displayName,
+            email: user?.email,
           };
           // fetch
           fetch("http://localhost:5000/products", {
@@ -56,9 +62,11 @@ const AddProduct = () => {
             .then((res) => res.json())
             .then((result) => {
               console.log(result);
+              toast.success("product uploaded");
             });
         }
       });
+    form.reset();
   };
 
   return (
@@ -126,7 +134,7 @@ const AddProduct = () => {
         </Button>
       </Form>
 
-      {/* <Button onClick={handleClick}>click</Button> */}
+      <ToastContainer />
     </div>
   );
 };

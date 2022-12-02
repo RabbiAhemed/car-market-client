@@ -10,14 +10,14 @@ const BookingModal = ({ item, show, setItem }) => {
   console.log(show);
   const { user } = useContext(AuthContext);
   const { displayName, email } = user;
-  const { product_name, product_resalePrice } = item;
+  const { Product_name, product_resalePrice } = item;
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const number = form.number.value;
     const location = form.location.value;
     const bookingInfo = {
-      product_name,
+      Product_name,
       product_resalePrice,
       displayName,
       email,
@@ -35,7 +35,7 @@ const BookingModal = ({ item, show, setItem }) => {
           console.log(data);
           if (data.acknowledged) {
             setItem(null);
-            toast.success(`you have booked ${bookingInfo.product_name}`);
+            toast.success(`you have booked ${bookingInfo.Product_name}`);
           }
         });
     }
@@ -45,7 +45,7 @@ const BookingModal = ({ item, show, setItem }) => {
   return (
     <Modal show={show}>
       <Modal.Header closeButton>
-        <Modal.Title>{product_name}</Modal.Title>
+        <Modal.Title>{Product_name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>seller: {user?.displayName}</Modal.Body>
       <Modal.Body>email: {user?.email}</Modal.Body>

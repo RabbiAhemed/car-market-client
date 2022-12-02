@@ -29,7 +29,7 @@ const ReportedItems = () => {
             items?.map((item, index) => (
               <tr key={item?._id}>
                 <td>{index + 1}</td>
-                <td>{item?.product_name}</td>
+                <td>{item?.Product_name}</td>
                 <td>Delete</td>
               </tr>
             ))}

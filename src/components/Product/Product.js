@@ -18,28 +18,28 @@ const Product = ({ product, setItem, setShow }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.acknowledged) {
-            toast.success(`${product.product_name} has been reported to admin`);
+            toast.success(`${product.Product_name} has been reported to admin`);
           }
         });
     }
   };
   const {
-    product_name,
-    product_image,
+    Product_name,
+    Product_image,
     product_location,
     product_originalPrice,
     product_resalePrice,
     product_yearsOfUse,
     product_timeOfPosting,
-    product_sellerName,
+    product_SellerName,
   } = product;
   return (
     <div className="card fw-bold my-2">
-      <img className="card-img-top product-img" src={product_image} alt="" />
+      <img className="card-img-top product-img" src={Product_image} alt="" />
       <div className="card-body p-3">
-        <h5 className="card-title">{product_name}</h5>
+        <h5 className="card-title">{Product_name}</h5>
         <div className="seller-location">
-          <p>Seller: {product_sellerName}</p>
+          <p>Seller: {product_SellerName}</p>
           <p>Location: {product_location}</p>
           <p>posted: {product_timeOfPosting}</p>
         </div>
