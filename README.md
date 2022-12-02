@@ -3,6 +3,9 @@
 Used car resale marketplace
 Live Website Link [https://resale-zone-4ff53.web.app](https://resale-zone-4ff53.web.app)
 
+adminEmail: \<admin@rs.com\>
+adminPassword: \<rsadmin\>
+
 - buyers can view product
 - sellers can add services
 - buyers can book a product
