@@ -10,7 +10,7 @@ const Product = ({ product, setItem, setShow }) => {
   };
   const handleReport = (product) => {
     if (product) {
-      fetch("http://localhost:5000/reports", {
+      fetch("https://server-side-sand.vercel.app/reports", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(product),

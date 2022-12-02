@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Table } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Table } from "react-bootstrap";
 import { AuthContext } from "../../../UserContext/UserContext";
 import useBuyer from "../../../hooks/UseBuyer";
 
@@ -9,7 +9,7 @@ const MyBooking = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isBuyer] = useBuyer(user.email);
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://server-side-sand.vercel.app/bookings?email=${user?.email}`;
 
   const { data: bookings = [], isLoading } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -52,12 +52,14 @@ const MyBooking = () => {
                   </div>
                 </td>
                 <td>
-                  <div
-                    onClick={() => navigate("/pay-order")}
-                    className=" text-white"
-                  >
-                    pay
-                  </div>
+                  {booking && !booking.paid && (
+                    <Link to={`/dashboard/payment/${booking._id}`}>
+                      <Button>Pay</Button>
+                    </Link>
+                  )}
+                  {booking && booking.paid && (
+                    <span className="fw-bold">Paid</span>
+                  )}
                 </td>
               </tr>
             ))}

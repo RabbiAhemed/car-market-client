@@ -6,7 +6,9 @@ const CarArticles = () => {
   const { data: articles = [], isLoading } = useQuery({
     queryKey: ["articles"],
     queryFn: () =>
-      fetch("http://localhost:5000/articles").then((res) => res.json()),
+      fetch("https://server-side-sand.vercel.app/articles").then((res) =>
+        res.json()
+      ),
   });
 
   console.log(articles.length);

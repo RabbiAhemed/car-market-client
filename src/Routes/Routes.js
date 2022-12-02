@@ -19,6 +19,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
 import BuyerRoute from "./BuyerRoute";
+import Payment from "../pages/Dashboards/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
         element: <Products></Products>,
         loader: async ({ params }) => {
           return fetch(
-            `http://localhost:5000/categories/${params.category_id}`
+            `https://server-side-sand.vercel.app/categories/${params.category_id}`
           );
         },
       },
@@ -43,7 +44,9 @@ const router = createBrowserRouter([
         path: "/articles/:id",
         element: <Details></Details>,
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/articles/${params.id}`);
+          return fetch(
+            `https://server-side-sand.vercel.app/articles/${params.id}`
+          );
         },
       },
 
@@ -118,6 +121,15 @@ const router = createBrowserRouter([
             <MyProducts></MyProducts>
           </SellerRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: async ({ params }) => {
+          return fetch(
+            `https://server-side-sand.vercel.app/bookings/${params.id}`
+          );
+        },
       },
     ],
   },

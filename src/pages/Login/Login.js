@@ -53,7 +53,7 @@ const Login = () => {
 
   const saveUserToDb = (name, email, userRole = "buyer") => {
     const user = { name, email, userRole };
-    fetch("http://localhost:5000/users", {
+    fetch("https://server-side-sand.vercel.app/users", {
       method: "POST",
 
       headers: {

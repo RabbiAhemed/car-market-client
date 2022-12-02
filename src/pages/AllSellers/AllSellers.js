@@ -3,7 +3,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 
 const AllUsers = () => {
-  const url = "http://localhost:5000/users";
+  const url = "https://server-side-sand.vercel.app/users";
 
   const { data: users = [] } = useQuery({
     queryKey: ["users"],

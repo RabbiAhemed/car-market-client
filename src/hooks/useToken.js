@@ -5,7 +5,7 @@ const useToken = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/verify?email=${email}`)
+      fetch(`https://server-side-sand.vercel.app/verify?email=${email}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.accessToken) {

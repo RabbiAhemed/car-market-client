@@ -7,7 +7,7 @@
 //   };
 
 //   // save user in database and get jwt token
-//   fetch(`${http://localhost:5000}/user/${user?.email}`, {
+//   fetch(`${https://server-side-sand.vercel.app}/user/${user?.email}`, {
 //     method: "PUT",
 
 //     headers: {

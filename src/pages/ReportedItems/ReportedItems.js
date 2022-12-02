@@ -3,7 +3,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 
 const ReportedItems = () => {
-  const url = "http://localhost:5000/reports";
+  const url = "https://server-side-sand.vercel.app/reports";
 
   const { data: items = [] } = useQuery({
     queryKey: ["items"],

@@ -51,7 +51,7 @@ const AddProduct = () => {
             email: user?.email,
           };
           // fetch
-          fetch("http://localhost:5000/products", {
+          fetch("https://server-side-sand.vercel.app/products", {
             method: "POST",
             headers: {
               "content-type": "application/json",
